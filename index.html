@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="BALTSAR — konst" />
+  <title>BALTSAR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="logo" href="#top">BALTSAR</a>
+    <nav class="nav">
+      <a href="#verk">Verk</a>
+      <a href="#om">Om</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="hero-line">Österlen</p>
+    </section>
+
+    <section id="verk" class="works">
+      <article class="work" data-progress="90">
+        <div class="work-media">
+          <img src="images/linjen.jpg" alt="LINJEN" loading="lazy" />
+        </div>
+        <div class="work-meta">
+          <div class="work-title-row">
+            <h2>LINJEN</h2>
+            <span class="pct">90%</span>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <div class="progress-fill is-on" style="--p: 90"></div>
+          </div>
+          <p class="work-line">En röst i ett fält.</p>
+        </div>
+      </article>
+
+      <article class="work" data-progress="0">
+        <div class="work-media">
+          <img src="images/dinbank.jpg" alt="DIN BANK" loading="lazy" />
+        </div>
+        <div class="work-meta">
+          <div class="work-title-row">
+            <h2>DIN BANK</h2>
+            <span class="pct">0%</span>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <div class="progress-fill is-on" style="--p: 0"></div>
+          </div>
+          <p class="work-line">En bankomat utan bank.</p>
+        </div>
+      </article>
+
+      <article class="work" data-progress="0">
+        <div class="work-media">
+          <img src="images/ubaten.jpg" alt="UBÅTEN" loading="lazy" />
+        </div>
+        <div class="work-meta">
+          <div class="work-title-row">
+            <h2>UBÅTEN</h2>
+            <span class="pct">0%</span>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <div class="progress-fill is-on" style="--p: 0"></div>
+          </div>
+          <p class="work-line">Ett skrov tar form.</p>
+        </div>
+      </article>
+    </section>
+
+    <section id="om" class="about">
+      <h2 class="about-heading">Om</h2>
+      <p class="about-text">
+        Baltsar.<br />
+        Konstnär och utvecklare på Österlen.
+      </p>
+      <p class="about-text">
+        Bygger fysiska installationer i gränslandet mellan teknik, röst och system.
+        Arbetar från ett före detta bankhus.
+      </p>
+      <p class="about-link">
+        <a href="https://headless.design" target="_blank" rel="noopener">headless.design</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© BALTSAR</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
