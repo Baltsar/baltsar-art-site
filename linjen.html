@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LINJEN — a voice in a field. What is done and what is left to build." />
+  <title>LINJEN — BALTSAR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="index.html">
+        <span class="led" aria-hidden="true"></span>
+        <img src="images/logo.png" alt="BALTSAR" width="119" height="18" />
+      </a>
+      <p class="bar-state" aria-hidden="true" data-progress="34">
+        <span class="bar-state-label">Building</span>
+        <span class="bar-meter"><b></b></span>
+      </p>
+      <nav class="nav">
+        <a href="index.html#verk">Works</a>
+        <a href="index.html#om">About</a>
+      </nav>
+      <div class="bar-scroll" aria-hidden="true"><span></span></div>
+    </div>
+  </header>
+
+  <main class="item" id="top">
+    <a class="item-back" href="index.html#verk">All works</a>
+
+    <header class="item-head">
+      <h1 class="item-title">LINJEN</h1>
+      <p class="item-line">A voice in a field.</p>
+    </header>
+
+    <figure class="item-hero">
+      <img src="images/linjen-01.jpg" alt="LINJEN — phone booth in a field" />
+    </figure>
+
+    <section class="facts" aria-label="Current status">
+      <div class="fact">
+        <p class="fact-label">Done</p>
+        <p class="fact-value">90%</p>
+        <div class="fact-bar" aria-hidden="true">
+          <div class="fact-bar-fill" data-progress="90"></div>
+        </div>
+      </div>
+      <div class="fact">
+        <p class="fact-label">Funding</p>
+        <p class="fact-value">Self-funded</p>
+      </div>
+      <div class="fact">
+        <p class="fact-label">Location</p>
+        <p class="fact-value">Österlen</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">What it takes</h2>
+      <ul class="steps">
+        <li class="step is-done">
+          <span class="step-mark" aria-hidden="true"></span>
+          <span class="step-text">Phone booth — found, restored and raised in the field</span>
+          <span class="step-state">Done</span>
+        </li>
+        <li class="step is-done">
+          <span class="step-mark" aria-hidden="true"></span>
+          <span class="step-text">The phone and the connection</span>
+          <span class="step-state">Done</span>
+        </li>
+        <li class="step is-done">
+          <span class="step-mark" aria-hidden="true"></span>
+          <span class="step-text">The voice that answers when you lift the receiver</span>
+          <span class="step-state">Done</span>
+        </li>
+        <li class="step">
+          <span class="step-mark" aria-hidden="true"></span>
+          <span class="step-text">Install it in the booth and make it run off its own power</span>
+          <span class="step-state">Left</span>
+        </li>
+        <li class="step">
+          <span class="step-mark" aria-hidden="true"></span>
+          <span class="step-text">Final tuning of audio and response times</span>
+          <span class="step-state">Left</span>
+        </li>
+      </ul>
+      <p class="block-note">
+        Self-funded. No support needed on this one.
+      </p>
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">Credits</h2>
+      <ul class="credits">
+        <li class="credit">
+          <span class="credit-label">The booth</span>
+          <span class="credit-value">With Johan Nygren</span>
+        </li>
+        <li class="credit">
+          <span class="credit-label">Phone, voice and code</span>
+          <span class="credit-value">Baltsar</span>
+        </li>
+        <li class="credit">
+          <span class="credit-label">Runs on</span>
+          <span class="credit-value">ElevenLabs + Twilio</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">Photos</h2>
+      <div class="shots">
+        <button class="shot" type="button" aria-label="Enlarge: phone booth in a field" data-src="images/linjen-01.jpg" data-caption="Phone booth in a field. Österlen.">
+          <img src="images/linjen-01.jpg" alt="Phone booth in a field" loading="lazy" />
+        </button>
+        <button class="shot" type="button" aria-label="Enlarge: Telia sign inside the booth" data-src="images/linjen-04.jpg" data-caption="Inside the booth. Telia still lit.">
+          <img src="images/linjen-04.jpg" alt="Telia sign inside the booth" loading="lazy" />
+        </button>
+        <button class="shot" type="button" aria-label="Enlarge: phone and router" data-src="images/linjen-05.jpg" data-caption="Phone, router and cardboard. The build behind it.">
+          <img src="images/linjen-05.jpg" alt="Yellow phone and router" loading="lazy" />
+        </button>
+        <button class="shot" type="button" aria-label="Enlarge: phone booth in evening light" data-src="images/linjen-02.jpg" data-caption="Same booth. Warmer light.">
+          <img src="images/linjen-02.jpg" alt="Phone booth in evening light" loading="lazy" />
+        </button>
+        <button class="shot" type="button" aria-label="Enlarge: phone booth from a distance" data-src="images/linjen-03.jpg" data-caption="Same booth. Another angle.">
+          <img src="images/linjen-03.jpg" alt="Phone booth from a distance" loading="lazy" />
+        </button>
+      </div>
+    </section>
+
+
+    <aside class="share" data-share aria-label="Share this work">
+      <p class="share-hook">If this should exist — pass it on.</p>
+      <div class="share-rail">
+        <div class="share-link">
+          <span class="share-url" data-share-url></span>
+          <button class="share-copy" type="button" data-share-copy>Copy</button>
+        </div>
+        <button class="share-native" type="button" data-share-native hidden aria-label="Share via device">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+          <span>Share</span>
+        </button>
+        <a class="share-icon" data-share-x href="#" target="_blank" rel="noopener" aria-label="Share on X">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a class="share-icon" data-share-wa href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.29-.14-1.7-.84-1.96-.93-.26-.1-.45-.14-.64.14-.19.28-.74.93-.9 1.12-.17.19-.33.21-.62.07-.29-.14-1.21-.45-2.3-1.43-.85-.76-1.42-1.7-1.59-1.98-.17-.29-.02-.44.12-.58.13-.13.29-.33.43-.5.14-.17.19-.28.29-.47.1-.19.05-.35-.02-.5-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.48h-.55c-.19 0-.5.07-.76.35-.26.28-1 1-1 2.43s1.02 2.82 1.17 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.11-.26-.18-.55-.32zM12.05 21.8h-.01a9.8 9.8 0 0 1-4.98-1.36l-.36-.21-3.7.97.99-3.61-.24-.37a9.77 9.77 0 0 1-1.5-5.22c0-5.4 4.4-9.8 9.81-9.8 2.62 0 5.08 1.02 6.93 2.88a9.74 9.74 0 0 1 2.87 6.93c0 5.41-4.4 9.8-9.8 9.8zm8.34-18.14A11.57 11.57 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.15 1.59 5.96L0 24l6.26-1.64a11.9 11.9 0 0 0 5.78 1.47h.01c6.58 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.18-3.49-8.43z"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <nav class="item-next" aria-label="More works">
+      <a href="dinbank.html">
+        <span class="item-next-copy">
+          <span class="item-next-label">Next project</span>
+          <span class="item-next-title">DIN BANK</span>
+        </span>
+        <span class="item-next-glyph" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <canvas class="footer-field" data-footer-field aria-hidden="true"></canvas>
+    <div class="footer-inner">
+      <p class="footer-name">Gustaf Baltsar Garnow</p>
+      <nav class="footer-social" aria-label="Social">
+        <a href="https://www.instagram.com/gustafbaltsar/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.69 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://x.com/gustafgarnow" target="_blank" rel="noopener" aria-label="X">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+    <button class="lightbox-backdrop" type="button" aria-label="Close image" data-lightbox-close></button>
+    <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Enlarged image">
+      <button class="lightbox-close" type="button" aria-label="Close image" data-lightbox-close>
+        <span aria-hidden="true"></span>
+      </button>
+      <img class="lightbox-img" src="" alt="" />
+      <p class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="main.js?v=3"></script>
+</body>
+</html>
