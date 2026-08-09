@@ -95,32 +95,28 @@
   </header>
 
   <main id="top">
-    <section class="hero">
-      <h1 class="hero-line"><span class="visually-hidden">BALTSAR — </span>Österlen</h1>
+    <section class="hero" aria-label="Featured work">
+      <a class="hero-plane" href="linjen.html">
+        <img
+          src="images/linjen-01.jpg"
+          alt="LINJEN — a phone booth standing alone in a field in Österlen"
+          width="1024"
+          height="576"
+          fetchpriority="high"
+        />
+      </a>
+      <div class="hero-copy">
+        <h1 class="hero-brand">BALTSAR</h1>
+        <p class="hero-work">LINJEN</p>
+        <p class="hero-line">A voice in a field. Österlen.</p>
+        <a class="hero-cta" href="linjen.html">See what it takes</a>
+      </div>
     </section>
 
-    <section id="verk" class="works">
-      <a class="work" href="linjen.html" data-progress="90">
-        <div class="work-media">
-          <img src="images/linjen.jpg" alt="LINJEN — phone booth in a field" width="768" height="576" loading="lazy" />
-          <span class="work-open">See what it takes</span>
-        </div>
-        <div class="work-meta">
-          <div class="work-title-row">
-            <h2>LINJEN</h2>
-            <span class="pct">90%</span>
-          </div>
-          <div class="progress" aria-hidden="true">
-            <div class="progress-fill is-on" style="--p: 90"></div>
-          </div>
-          <p class="work-line">A voice in a field.</p>
-        </div>
-      </a>
-
-      <a class="work" href="dinbank.html" data-progress="10">
+    <section id="verk" class="works" aria-label="Works in progress">
+      <a class="work work--sketch" href="dinbank.html" data-progress="10">
         <div class="work-media">
           <img src="images/dinbank.jpg" alt="DIN BANK — ATM set into a brick wall" width="682" height="512" loading="lazy" />
-          <span class="work-open">See what it takes</span>
         </div>
         <div class="work-meta">
           <div class="work-title-row">
@@ -134,10 +130,9 @@
         </div>
       </a>
 
-      <a class="work" href="ubaten.html" data-progress="3">
+      <a class="work work--sketch" href="ubaten.html" data-progress="3">
         <div class="work-media">
           <img src="images/ubaten.jpg" alt="UBÅTEN — conning tower in fog" width="682" height="512" loading="lazy" />
-          <span class="work-open">See what it takes</span>
         </div>
         <div class="work-meta">
           <div class="work-title-row">
@@ -221,6 +216,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=4"></script>
+  <script src="main.js?v=5"></script>
 </body>
 </html>

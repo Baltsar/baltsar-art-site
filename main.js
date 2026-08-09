@@ -104,7 +104,6 @@
     ];
 
     const COARSE = { cell: 7, contrast: 0.72, lift: 0.16 };
-    const FINE = { cell: 4, contrast: 1, lift: 0.06 };
 
     const sampler = document.createElement("canvas");
     const samplerCtx = sampler.getContext("2d", { willReadFrequently: true });
@@ -173,40 +172,11 @@
       const canvas = figure.querySelector("canvas");
       if (!img || !canvas) return;
 
-      let state = { ...COARSE };
-      let frame = null;
-
-      const draw = () => render(canvas, img, state.cell, state.contrast, state.lift);
-
-      const settle = (target) => {
-        if (reduce) {
-          state = { ...target };
-          draw();
-          return;
-        }
-
-        const from = { ...state };
-        const start = performance.now();
-        const duration = 420;
-
-        cancelAnimationFrame(frame);
-        const step = (now) => {
-          const t = Math.min(1, (now - start) / duration);
-          const eased = 1 - Math.pow(1 - t, 3);
-          state.cell = from.cell + (target.cell - from.cell) * eased;
-          state.contrast = from.contrast + (target.contrast - from.contrast) * eased;
-          state.lift = from.lift + (target.lift - from.lift) * eased;
-          draw();
-          if (t < 1) frame = requestAnimationFrame(step);
-        };
-        frame = requestAnimationFrame(step);
-      };
+      const draw = () =>
+        render(canvas, img, COARSE.cell, COARSE.contrast, COARSE.lift);
 
       const ready = img.complete ? Promise.resolve() : img.decode().catch(() => {});
       ready.then(draw);
-
-      figure.addEventListener("pointerenter", () => settle(FINE));
-      figure.addEventListener("pointerleave", () => settle(COARSE));
 
       if ("ResizeObserver" in window) {
         new ResizeObserver(() => draw()).observe(canvas);
