@@ -3,14 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="BALTSAR — installations in progress. What each work takes to build." />
-  <title>BALTSAR</title>
+  <title>BALTSAR — works in progress from Österlen</title>
+  <meta name="description" content="Gustaf Baltsar Garnow builds installations in the open. LINJEN, DIN BANK and UBÅTEN — what each work takes, what it costs, and how you can help." />
+  <meta name="author" content="Gustaf Baltsar Garnow" />
+  <meta name="theme-color" content="#f6f5f2" />
+  <meta name="color-scheme" content="light" />
+  <link rel="canonical" href="https://www.baltsar.art/" />
+
+  <meta property="og:site_name" content="BALTSAR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:url" content="https://www.baltsar.art/" />
+  <meta property="og:title" content="BALTSAR — works in progress from Österlen" />
+  <meta property="og:description" content="Gustaf Baltsar Garnow builds installations in the open. LINJEN, DIN BANK and UBÅTEN — what each work takes, what it costs, and how you can help." />
+  <meta property="og:image" content="https://www.baltsar.art/images/og.jpg" />
+  <meta property="og:image:secure_url" content="https://www.baltsar.art/images/og.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LINJEN — a phone booth standing alone in a field in Österlen" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BALTSAR — works in progress from Österlen" />
+  <meta name="twitter:description" content="Gustaf Baltsar Garnow builds installations in the open. LINJEN, DIN BANK and UBÅTEN — what each work takes, what it costs, and how you can help." />
+  <meta name="twitter:image" content="https://www.baltsar.art/images/og.jpg" />
+  <meta name="twitter:image:alt" content="LINJEN — a phone booth standing alone in a field in Österlen" />
+
+  <link rel="icon" href="images/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "BALTSAR",
+        "url": "https://www.baltsar.art/",
+        "description": "Installations in progress from Österlen — LINJEN, DIN BANK and UBÅTEN. What each work takes to build.",
+        "inLanguage": "en",
+        "author": { "@id": "https://www.baltsar.art/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.baltsar.art/#person",
+        "name": "Gustaf Baltsar Garnow",
+        "alternateName": "Baltsar",
+        "url": "https://www.baltsar.art/",
+        "jobTitle": "Artist and developer",
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Stockholm",
+          "address": { "@type": "PostalAddress", "addressCountry": "SE" }
+        },
+        "sameAs": [
+          "https://www.instagram.com/gustafbaltsar/",
+          "https://x.com/gustafgarnow",
+          "https://headless.design",
+          "https://andersgarnow.se/"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to content</a>
   <div class="noise" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -33,13 +96,13 @@
 
   <main id="top">
     <section class="hero">
-      <p class="hero-line">Österlen</p>
+      <h1 class="hero-line"><span class="visually-hidden">BALTSAR — </span>Österlen</h1>
     </section>
 
     <section id="verk" class="works">
       <a class="work" href="linjen.html" data-progress="90">
         <div class="work-media">
-          <img src="images/linjen.jpg" alt="LINJEN — phone booth in a field" loading="lazy" />
+          <img src="images/linjen.jpg" alt="LINJEN — phone booth in a field" width="768" height="576" loading="lazy" />
           <span class="work-open">See what it takes</span>
         </div>
         <div class="work-meta">
@@ -56,7 +119,7 @@
 
       <a class="work" href="dinbank.html" data-progress="10">
         <div class="work-media">
-          <img src="images/dinbank.jpg" alt="DIN BANK — ATM set into a brick wall" loading="lazy" />
+          <img src="images/dinbank.jpg" alt="DIN BANK — ATM set into a brick wall" width="682" height="512" loading="lazy" />
           <span class="work-open">See what it takes</span>
         </div>
         <div class="work-meta">
@@ -73,7 +136,7 @@
 
       <a class="work" href="ubaten.html" data-progress="3">
         <div class="work-media">
-          <img src="images/ubaten.jpg" alt="UBÅTEN — conning tower in fog" loading="lazy" />
+          <img src="images/ubaten.jpg" alt="UBÅTEN — conning tower in fog" width="682" height="512" loading="lazy" />
           <span class="work-open">See what it takes</span>
         </div>
         <div class="work-meta">
@@ -158,6 +221,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=3"></script>
+  <script src="main.js?v=4"></script>
 </body>
 </html>
