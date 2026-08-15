@@ -316,6 +316,7 @@ body {
   overflow: hidden;
 }
 
+.hero-plane picture,
 .hero-plane img,
 .hero-plane video {
   width: 100%;
@@ -329,6 +330,18 @@ body {
   filter: saturate(0.92) contrast(1.04) brightness(0.92);
   animation: hero-settle 2.4s var(--ease-out) both;
   transition: transform 1.4s var(--ease-out), filter 0.8s var(--ease);
+}
+
+/* the still is the floor; motion fades in on top of it once it can play */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.hero-video.is-playing {
+  opacity: 1;
 }
 
 .hero-plane:hover img,
@@ -364,10 +377,9 @@ body {
 .hero-copy {
   position: relative;
   z-index: 1;
-  max-width: 1080px;
   width: 100%;
-  margin: 0 auto;
-  padding: 0 1.5rem 2.75rem;
+  /* proportional inset so the title fills the same share at every width */
+  padding: 0 max(1rem, 3vw) 1.5rem;
   pointer-events: none;
   animation: hero-copy-in 1.1s var(--ease-out) 0.25s both;
 }
@@ -378,26 +390,28 @@ body {
 
 @media (min-width: 768px) {
   .hero-copy {
-    padding: 0 2rem 3.25rem;
+    padding: 0 max(1rem, 3vw) 2.25rem;
   }
 }
 
-.hero-brand {
-  font-size: clamp(1.55rem, 4.2vw, 2.35rem);
+/* the name of the work, at the size of the field it stands in. vw so it
+   spans the viewport, vh so a short window cannot push it off screen. */
+.hero-title {
+  font-size: min(27.6vw, 62vh);
   font-weight: 500;
-  letter-spacing: 0.28em;
+  letter-spacing: -0.045em;
+  line-height: 0.78;
   text-transform: uppercase;
-  line-height: 1;
-  margin-bottom: 1.1rem;
+  white-space: nowrap;
 }
 
-.hero-work {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(243, 241, 234, 0.72);
-  margin-bottom: 0.55rem;
+.hero-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem 2rem;
+  margin-top: 1.15rem;
 }
 
 .hero-line {
@@ -406,7 +420,6 @@ body {
   font-weight: 400;
   line-height: 1.4;
   color: rgba(243, 241, 234, 0.88);
-  margin-bottom: 1.35rem;
 }
 
 .hero-cta {
@@ -1766,8 +1779,8 @@ body.is-lightbox-open {
 
 
 /* ── The recorded call ─────────────────────────────────────── */
-/* One button that becomes her voice. Light drains when the line
-   opens (1.2s) and returns slower (2.5s). */
+/* One button that becomes her voice. The section floods with the yellow of
+   the phone when the line opens (1.2s) and drains back slower (2.5s). */
 
 .call {
   --call-bg: var(--bg-soft);
@@ -1788,13 +1801,15 @@ body.is-lightbox-open {
   transition: background 2.5s var(--ease-out), color 2.5s var(--ease-out);
 }
 
+/* the yellow of the phone itself, off the body in images/linjen-05.jpg.
+   Inks go dark here: nothing light clears 4.5:1 against this. */
 .call[data-state="connecting"],
 .call[data-state="open"] {
-  --call-bg: #15171b;
-  --call-ink: #eceae5;
-  --call-muted: #a8a49c;
-  --call-faint: #8e8a82;
-  --call-hair: rgba(236, 234, 229, 0.16);
+  --call-bg: #edb200;
+  --call-ink: #1a1a1a;
+  --call-muted: #333333;
+  --call-faint: #4a4a4a;
+  --call-hair: rgba(26, 26, 26, 0.3);
   transition: background 1.2s var(--ease), color 1.2s var(--ease);
 }
 
@@ -1989,37 +2004,8 @@ body.is-lightbox-open {
   color: var(--call-ink);
 }
 
-.call-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin-top: 1.25rem;
-}
-
 /* The full text stays one click away, never in the way. */
 .call[data-state="ended"] .call-panel--open { display: none; }
-
-.call[data-state="ended"].is-reading .call-panel--open {
-  display: block;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--call-hair);
-}
-
-.call[data-state="ended"].is-reading .call-script {
-  display: grid;
-  gap: 1.15rem;
-  min-height: 0;
-}
-
-.call[data-state="ended"].is-reading .call-line {
-  position: static;
-  opacity: 1;
-  transform: none;
-}
-
-.call[data-state="ended"] .call-panel--open [data-call-stop] { display: none; }
 
 .call-live {
   position: absolute;

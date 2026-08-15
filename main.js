@@ -432,7 +432,6 @@
   const live = call.querySelector("[data-call-live]");
   const outcome = call.querySelector("[data-call-outcome]");
   const stopButton = call.querySelector("[data-call-stop]");
-  const readButton = call.querySelector("[data-call-read]");
   const startButtons = call.querySelectorAll("[data-call-start]");
   const replayButton = call.querySelector(".call-panel--ended [data-call-start]");
 
@@ -525,8 +524,6 @@
     startedAt = performance.now();
     running = true;
 
-    call.classList.remove("is-reading");
-    if (readButton) readButton.textContent = "Read the call";
     cues.forEach((cue) => cue.el.classList.remove("is-now", "is-said"));
     paint(0);
 
@@ -549,44 +546,22 @@
   startButtons.forEach((button) => button.addEventListener("click", start));
   stopButton?.addEventListener("click", () => finish("user"));
 
-  readButton?.addEventListener("click", () => {
-    const reading = call.classList.toggle("is-reading");
-    readButton.textContent = reading ? "Hide the call" : "Read the call";
-  });
-
   // A line left open in a background tab is a line left open.
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && running) finish("user");
   });
 })();
 
-/* Hero footage. The source is picked here rather than with <source media>,
-   which browsers no longer honour inside <video>. */
+/* Hero footage. Motion is an enhancement laid over the still that is already
+   there — phones keep the still, where a cropped video only ever looked worse. */
 (() => {
   const videos = document.querySelectorAll("[data-hero-video]");
   if (!videos.length) return;
 
-  // Phones get a portrait cut whose crop follows the booth through the pan;
-  // the landscape file loses it entirely once a tall screen crops the sides.
-  const portrait = window.matchMedia(
-    "(max-width: 48rem) and (orientation: portrait)"
-  ).matches;
-
-  const sourceFor = (video) =>
-    portrait && video.dataset.srcPt
-      ? { src: video.dataset.srcPt, poster: video.dataset.posterPt }
-      : { src: video.dataset.srcLg, poster: video.dataset.posterLg };
-
-  // The poster is the exact frame the loop opens on, so it has to be in place
-  // before anything else — including for the people who never get the video.
-  videos.forEach((video) => {
-    const poster = sourceFor(video).poster;
-    if (poster) video.poster = poster;
-  });
-
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const saveData = navigator.connection?.saveData === true;
-  if (reduce || saveData) return;
+  const narrow = window.matchMedia("(max-width: 48rem) and (orientation: portrait)").matches;
+  if (reduce || saveData || narrow) return;
 
   const watch =
     "IntersectionObserver" in window
@@ -602,9 +577,17 @@
       : null;
 
   videos.forEach((video) => {
-    const { src } = sourceFor(video);
+    const src = video.dataset.src;
     if (!src) return;
 
+    // Revealed on the first decoded frame, not on playback: that frame is the
+    // still it replaces, so a blocked autoplay looks like nothing happened
+    // rather than leaving the footage invisible forever.
+    video.addEventListener(
+      "loadeddata",
+      () => video.classList.add("is-playing"),
+      { once: true }
+    );
     video.src = src;
 
     // Nothing to gain from decoding footage that has scrolled away.
