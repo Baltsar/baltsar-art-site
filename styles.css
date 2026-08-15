@@ -316,12 +316,15 @@ body {
   overflow: hidden;
 }
 
-.hero-plane img {
+.hero-plane img,
+.hero-plane video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 42%;
   display: block;
+  /* the anchor owns the click, never the video element */
+  pointer-events: none;
   transform: scale(1.04);
   filter: saturate(0.92) contrast(1.04) brightness(0.92);
   animation: hero-settle 2.4s var(--ease-out) both;
@@ -329,7 +332,9 @@ body {
 }
 
 .hero-plane:hover img,
-.hero-plane:focus-visible img {
+.hero-plane:focus-visible img,
+.hero-plane:hover video,
+.hero-plane:focus-visible video {
   transform: scale(1.07);
   filter: saturate(1) contrast(1.06) brightness(0.95);
 }
@@ -1063,7 +1068,8 @@ a:focus-visible {
   background: var(--bg-soft);
 }
 
-.item-hero img {
+.item-hero img,
+.item-hero video {
   width: 100%;
   height: 100%;
   object-fit: cover;

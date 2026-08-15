@@ -559,3 +559,56 @@
     if (document.hidden && running) finish("user");
   });
 })();
+
+/* Hero footage. The source is picked here rather than with <source media>,
+   which browsers no longer honour inside <video>. */
+(() => {
+  const videos = document.querySelectorAll("[data-hero-video]");
+  if (!videos.length) return;
+
+  // Phones get a portrait cut whose crop follows the booth through the pan;
+  // the landscape file loses it entirely once a tall screen crops the sides.
+  const portrait = window.matchMedia(
+    "(max-width: 48rem) and (orientation: portrait)"
+  ).matches;
+
+  const sourceFor = (video) =>
+    portrait && video.dataset.srcPt
+      ? { src: video.dataset.srcPt, poster: video.dataset.posterPt }
+      : { src: video.dataset.srcLg, poster: video.dataset.posterLg };
+
+  // The poster is the exact frame the loop opens on, so it has to be in place
+  // before anything else — including for the people who never get the video.
+  videos.forEach((video) => {
+    const poster = sourceFor(video).poster;
+    if (poster) video.poster = poster;
+  });
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = navigator.connection?.saveData === true;
+  if (reduce || saveData) return;
+
+  const watch =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.play().catch(() => {});
+              else entry.target.pause();
+            });
+          },
+          { threshold: 0.15 }
+        )
+      : null;
+
+  videos.forEach((video) => {
+    const { src } = sourceFor(video);
+    if (!src) return;
+
+    video.src = src;
+
+    // Nothing to gain from decoding footage that has scrolled away.
+    if (watch) watch.observe(video);
+    else video.play().catch(() => {});
+  });
+})();

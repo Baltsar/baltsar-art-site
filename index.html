@@ -37,6 +37,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" as="image" href="images/linjen-field-poster.jpg" media="not all and (max-width: 48rem) and (orientation: portrait)" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/linjen-field-poster-pt.jpg" media="(max-width: 48rem) and (orientation: portrait)" fetchpriority="high" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -96,14 +98,26 @@
 
   <main id="top">
     <section class="hero" aria-label="Featured work">
-      <a class="hero-plane" href="linjen.html">
-        <img
-          src="images/linjen-01.jpg"
-          alt="LINJEN — a phone booth standing alone in a field in Österlen"
-          width="1024"
-          height="576"
-          fetchpriority="high"
-        />
+      <a
+        class="hero-plane"
+        href="linjen.html"
+        aria-label="LINJEN — a phone booth standing alone in a field in Österlen"
+      >
+        <video
+          class="hero-video"
+          data-hero-video
+          data-src-lg="video/linjen-field-lg.mp4"
+          data-src-pt="video/linjen-field-pt.mp4"
+          data-poster-lg="images/linjen-field-poster.jpg"
+          data-poster-pt="images/linjen-field-poster-pt.jpg"
+          width="1440"
+          height="810"
+          muted
+          loop
+          playsinline
+          disablepictureinpicture
+          aria-hidden="true"
+        ></video>
       </a>
       <div class="hero-copy">
         <h1 class="hero-brand">BALTSAR</h1>
@@ -216,6 +230,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=5"></script>
+  <script src="main.js?v=11"></script>
 </body>
 </html>
