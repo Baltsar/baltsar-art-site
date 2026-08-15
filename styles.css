@@ -1758,3 +1758,276 @@ body.is-lightbox-open {
   }
 }
 
+
+/* ── The recorded call ─────────────────────────────────────── */
+/* One button that becomes her voice. Light drains when the line
+   opens (1.2s) and returns slower (2.5s). */
+
+.call {
+  --call-bg: var(--bg-soft);
+  --call-ink: var(--ink);
+  --call-muted: var(--ink-muted);
+  /* Darker than the site's --ink-faint: this section has to hold 4.5:1. */
+  --call-faint: #666666;
+  --call-hair: var(--line);
+  --call-progress: 1;
+
+  position: relative;
+  overflow: hidden;
+  margin-top: 4rem;
+  padding: 1.75rem 1.5rem 1.75rem 3.25rem;
+  border-radius: var(--radius);
+  background: var(--call-bg);
+  color: var(--call-ink);
+  transition: background 2.5s var(--ease-out), color 2.5s var(--ease-out);
+}
+
+.call[data-state="connecting"],
+.call[data-state="open"] {
+  --call-bg: #15171b;
+  --call-ink: #eceae5;
+  --call-muted: #a8a49c;
+  --call-faint: #8e8a82;
+  --call-hair: rgba(236, 234, 229, 0.16);
+  transition: background 1.2s var(--ease), color 1.2s var(--ease);
+}
+
+/* One height for every state, so nothing jumps under the reader. */
+.call-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 12rem;
+}
+
+/* The countdown is a line, because the work is called LINJEN. */
+.call-rail {
+  position: absolute;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  left: 1.9rem;
+  width: 1px;
+  background: var(--call-hair);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.call[data-state="connecting"] .call-rail,
+.call[data-state="open"] .call-rail {
+  opacity: 1;
+}
+
+.call-rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--call-ink);
+  transform: scaleY(var(--call-progress));
+  transform-origin: top;
+  opacity: 0.7;
+  transition: transform 0.15s linear;
+}
+
+.call-rail-fill.is-speaking {
+  animation: call-breathe 2.8s var(--ease) infinite;
+}
+
+@keyframes call-breathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.95; }
+}
+
+.call-count {
+  position: absolute;
+  right: 0.45rem;
+  top: calc(var(--call-progress) * 100%);
+  transform: translateY(-100%);
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--call-faint);
+}
+
+.call-panel { display: none; }
+
+.call[data-state="idle"] .call-panel--idle,
+.call[data-state="connecting"] .call-panel--connecting,
+.call[data-state="open"] .call-panel--open,
+.call[data-state="ended"] .call-panel--ended {
+  display: block;
+  animation: call-in 0.9s var(--ease-out) both;
+}
+
+@keyframes call-in {
+  from { opacity: 0; transform: translateY(0.4rem); }
+  to { opacity: 1; transform: none; }
+}
+
+.call-note {
+  margin-top: 0.9rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--call-faint);
+}
+
+.call-status {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--call-faint);
+}
+
+.call-button {
+  appearance: none;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--call-bg);
+  background: var(--call-ink);
+  cursor: pointer;
+  transition: transform 0.3s var(--ease), background 1.2s var(--ease),
+    color 1.2s var(--ease);
+}
+
+.call-button svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.call-button:hover { transform: translateY(-1px); }
+.call-button:active { transform: none; }
+
+.call-button--quiet {
+  color: var(--call-ink);
+  background: transparent;
+  border-color: var(--call-hair);
+}
+
+/* Quiet text controls — never compete with her voice. */
+.call-hang {
+  appearance: none;
+  border: 0;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.25rem;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--call-faint);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+
+.call-hang:hover { color: var(--call-ink); }
+
+.call-button:focus-visible,
+.call-hang:focus-visible {
+  outline: 1px solid var(--call-ink);
+  outline-offset: 3px;
+}
+
+/* During the call the lines share one spot — she says one thing at a
+   time, and the block keeps its height so nothing shifts. */
+.call-script {
+  position: relative;
+  list-style: none;
+  max-width: 30rem;
+  min-height: 7.5rem;
+}
+
+.call-line {
+  position: absolute;
+  inset: 0 0 auto 0;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.call-line.is-now { opacity: 1; transform: none; }
+
+.call-line-sv {
+  display: block;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--call-ink);
+}
+
+.call-line-en {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--call-faint);
+}
+
+.call-after-text {
+  margin-top: 0.6rem;
+  max-width: 26rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--call-ink);
+}
+
+.call-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1.25rem;
+}
+
+/* The full text stays one click away, never in the way. */
+.call[data-state="ended"] .call-panel--open { display: none; }
+
+.call[data-state="ended"].is-reading .call-panel--open {
+  display: block;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--call-hair);
+}
+
+.call[data-state="ended"].is-reading .call-script {
+  display: grid;
+  gap: 1.15rem;
+  min-height: 0;
+}
+
+.call[data-state="ended"].is-reading .call-line {
+  position: static;
+  opacity: 1;
+  transform: none;
+}
+
+.call[data-state="ended"] .call-panel--open [data-call-stop] { display: none; }
+
+.call-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (min-width: 40rem) {
+  .call { padding: 2.25rem 2.5rem 2.25rem 4rem; }
+  .call-rail { left: 2.25rem; top: 2.25rem; bottom: 2.25rem; }
+  .call-count { right: 0.55rem; }
+  .call-script { min-height: 6rem; }
+  .call-inner { min-height: 9.5rem; }
+}

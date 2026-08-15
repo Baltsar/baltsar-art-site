@@ -415,3 +415,147 @@
     if (event.key === "ArrowRight") show(index + 1);
   });
 })();
+
+/* The recorded call — plays on screen with or without the audio file. */
+(() => {
+  const call = document.querySelector("[data-call]");
+  if (!call) return;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const AUDIO_SRC = "audio/linjen-samtalet.mp3";
+  const DURATION = 46;
+  const CONNECT_MS = 1400;
+
+  const railFill = call.querySelector(".call-rail-fill");
+  const count = call.querySelector("[data-call-count]");
+  const live = call.querySelector("[data-call-live]");
+  const outcome = call.querySelector("[data-call-outcome]");
+  const stopButton = call.querySelector("[data-call-stop]");
+  const readButton = call.querySelector("[data-call-read]");
+  const startButtons = call.querySelectorAll("[data-call-start]");
+  const replayButton = call.querySelector(".call-panel--ended [data-call-start]");
+
+  const cues = Array.from(call.querySelectorAll(".call-line")).map((el) => ({
+    el,
+    at: Number(el.dataset.at),
+    until: Number(el.dataset.until),
+  }));
+
+  let audio = null;
+  let clock = 0;
+  let connectTimer = 0;
+  let startedAt = 0;
+  let running = false;
+
+  const announce = (message) => {
+    if (live) live.textContent = message;
+  };
+
+  const elapsed = () => {
+    if (audio && !audio.paused && audio.currentTime > 0) return audio.currentTime;
+    return (performance.now() - startedAt) / 1000;
+  };
+
+  const paint = (seconds) => {
+    // Reduced motion: the line steps once per second instead of gliding.
+    const shown = reduce ? Math.floor(seconds) : seconds;
+    const left = Math.max(0, DURATION - shown);
+
+    call.style.setProperty("--call-progress", String(left / DURATION));
+    if (count) count.textContent = String(Math.ceil(left));
+
+    let speaking = false;
+    cues.forEach((cue) => {
+      const isNow = seconds >= cue.at && seconds < cue.until;
+      cue.el.classList.toggle("is-now", isNow);
+      cue.el.classList.toggle("is-said", seconds >= cue.until);
+      if (isNow) speaking = true;
+    });
+
+    railFill?.classList.toggle("is-speaking", speaking && !reduce);
+  };
+
+  const teardown = () => {
+    running = false;
+    clearInterval(clock);
+    clearTimeout(connectTimer);
+    audio?.pause();
+    railFill?.classList.remove("is-speaking");
+  };
+
+  const finish = (reason) => {
+    const hadFocus = call.contains(document.activeElement);
+
+    teardown();
+    if (audio) audio.currentTime = 0;
+    paint(DURATION);
+
+    const message = reason === "user" ? "You hung up." : "The line ran out.";
+    if (outcome) outcome.textContent = message;
+    call.dataset.state = "ended";
+    announce(message);
+
+    if (hadFocus) replayButton?.focus();
+  };
+
+  // Driven by an interval, not requestAnimationFrame: rAF pauses whenever the
+  // document stops rendering, which would freeze the countdown mid-call.
+  const tick = () => {
+    if (!running) return;
+
+    const seconds = elapsed();
+    if (seconds >= DURATION) {
+      finish("time");
+      return;
+    }
+
+    paint(seconds);
+  };
+
+  const start = () => {
+    teardown();
+
+    if (!audio) {
+      audio = new Audio(AUDIO_SRC);
+      audio.preload = "auto";
+    }
+    audio.currentTime = 0;
+
+    startedAt = performance.now();
+    running = true;
+
+    call.classList.remove("is-reading");
+    if (readButton) readButton.textContent = "Read the call";
+    cues.forEach((cue) => cue.el.classList.remove("is-now", "is-said"));
+    paint(0);
+
+    call.dataset.state = "connecting";
+    announce("Connecting");
+
+    // No recording in place yet is not a failure — the call still plays on screen.
+    audio.play().catch(() => {});
+
+    connectTimer = window.setTimeout(() => {
+      if (!running) return;
+      call.dataset.state = "open";
+      announce("Connected. She speaks Swedish.");
+      stopButton?.focus();
+    }, CONNECT_MS);
+
+    clock = window.setInterval(tick, 100);
+  };
+
+  startButtons.forEach((button) => button.addEventListener("click", start));
+  stopButton?.addEventListener("click", () => finish("user"));
+
+  readButton?.addEventListener("click", () => {
+    const reading = call.classList.toggle("is-reading");
+    readButton.textContent = reading ? "Hide the call" : "Read the call";
+  });
+
+  // A line left open in a background tab is a line left open.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden && running) finish("user");
+  });
+})();

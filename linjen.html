@@ -35,7 +35,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script type="application/ld+json">
   {
@@ -101,6 +101,69 @@
       <div class="fact">
         <p class="fact-label">Location</p>
         <p class="fact-value">Österlen</p>
+      </div>
+    </section>
+
+    <section class="call" id="the-call" data-call data-state="idle" aria-label="A recorded call from the line">
+      <div class="call-rail" aria-hidden="true">
+        <span class="call-rail-fill"></span>
+        <span class="call-count" data-call-count>46</span>
+      </div>
+
+      <div class="call-inner">
+        <div class="call-panel call-panel--idle">
+          <button class="call-button" type="button" data-call-start>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.68-.36 1.02-.25 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>Lift the receiver</span>
+          </button>
+          <p class="call-note">A recording of the line. Forty-six seconds, in Swedish.</p>
+        </div>
+
+        <div class="call-panel call-panel--connecting">
+          <p class="call-status">Connecting</p>
+        </div>
+
+        <div class="call-panel call-panel--open">
+          <ol class="call-script">
+            <li class="call-line" data-at="3" data-until="5">
+              <span class="call-line-sv">Det är sällan nån lyfter.</span>
+              <span class="call-line-en">It’s rare that anyone lifts.</span>
+            </li>
+            <li class="call-line" data-at="6.8" data-until="13.5">
+              <span class="call-line-sv">Härifrån ser jag en väg och sen ingenting.</span>
+              <span class="call-line-en">From here I see a road, and then nothing.</span>
+            </li>
+            <li class="call-line" data-at="13.5" data-until="19.8">
+              <span class="call-line-sv">Stolparna går åt två håll. Åt ena hållet är det havet, fast man ser det inte.</span>
+              <span class="call-line-en">The poles run two ways. One way is the sea, though you can’t see it.</span>
+            </li>
+            <li class="call-line" data-at="21.4" data-until="28">
+              <span class="call-line-sv">Det stod en kiosk som den här i varje by en gång. Nu är det den här.</span>
+              <span class="call-line-en">There was a booth like this in every village once. Now there’s this one.</span>
+            </li>
+            <li class="call-line" data-at="29.4" data-until="36.1">
+              <span class="call-line-sv">Jag vet inte vilket år det är hos dig. Det spelar mindre roll än man tror.</span>
+              <span class="call-line-en">I don’t know what year it is where you are. It matters less than you’d think.</span>
+            </li>
+            <li class="call-line" data-at="37.4" data-until="43.1">
+              <span class="call-line-sv">Strömmen räcker inte längre. Ring igen när det är mörkt.</span>
+              <span class="call-line-en">The power won’t hold any longer. Call again when it’s dark.</span>
+            </li>
+          </ol>
+          <button class="call-hang" type="button" data-call-stop>Hang up</button>
+        </div>
+
+        <div class="call-panel call-panel--ended">
+          <p class="call-status" data-call-outcome>The line ran out.</p>
+          <p class="call-after-text">Want to talk back? Visit her in Österlen.</p>
+
+          <div class="call-actions">
+            <button class="call-button call-button--quiet" type="button" data-call-start>Play it again</button>
+            <button class="call-hang" type="button" data-call-read>Read the call</button>
+          </div>
+        </div>
+
+        <p class="call-live" aria-live="polite" data-call-live></p>
       </div>
     </section>
 
@@ -281,6 +344,6 @@
     </div>
   </div>
 
-  <script src="main.js?v=5"></script>
+  <script src="main.js?v=8"></script>
 </body>
 </html>
