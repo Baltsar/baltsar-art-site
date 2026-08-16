@@ -548,7 +548,8 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.work-title-row h2 {
+.work-title-row h2,
+.work-title-row h3 {
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -2022,4 +2023,260 @@ body.is-lightbox-open {
   .call-count { right: 0.55rem; }
   .call-script { min-height: 6rem; }
   .call-inner { min-height: 9.5rem; }
+}
+
+/* ── Quotes in the artist's own voice ──────────────────────── */
+/* Swedish carries, English follows underneath. */
+
+.says {
+  list-style: none;
+  display: grid;
+  gap: 2.25rem;
+  max-width: 40rem;
+  margin-top: 1.75rem;
+}
+
+.say {
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--line);
+}
+
+.say-sv {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.say-en {
+  margin-top: 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.say-source {
+  margin-top: 0.75rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  /* darker than --ink-faint, which does not clear 4.5:1 on paper */
+  color: #666666;
+}
+
+/* an aside in my own voice, not a label — sentence case on purpose */
+.say-note {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+@media (min-width: 40rem) {
+  .say { padding-left: 1.5rem; }
+  .say-sv { font-size: 1.22rem; }
+}
+
+/* ── Completed work, listed apart from what is still being built ── */
+
+.works--done {
+  padding-top: 0;
+}
+
+.works-heading {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  /* darker than --ink-faint, which does not clear 4.5:1 on paper */
+  color: #666666;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ── Click-to-load embed ───────────────────────────────────── */
+/* Nothing leaves the page for a third party until the visitor asks. */
+
+.embed {
+  position: relative;
+  margin-top: 1.75rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+.embed iframe,
+.embed-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embed-play {
+  display: block;
+  padding: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.embed-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+  filter: saturate(0.94) contrast(1.02);
+  transition: transform 1.2s var(--ease-out);
+}
+
+.embed-play::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14, 14, 14, 0.82) 0%,
+    rgba(14, 14, 14, 0.35) 45%,
+    rgba(14, 14, 14, 0.1) 100%
+  );
+}
+
+.embed-play:hover img,
+.embed-play:focus-visible img {
+  transform: scale(1.03);
+}
+
+.embed-copy {
+  position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+  color: #f3f1ea;
+}
+
+.embed-title {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.embed-note {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgba(243, 241, 234, 0.82);
+}
+
+/* a play triangle, drawn rather than fetched */
+.embed-glyph {
+  position: absolute;
+  z-index: 1;
+  top: 1.1rem;
+  left: 1.25rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(243, 241, 234, 0.6);
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.embed-glyph::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 7px 0 7px 11px;
+  border-color: transparent transparent transparent #f3f1ea;
+}
+
+.embed-play:hover .embed-glyph,
+.embed-play:focus-visible .embed-glyph {
+  background: rgba(243, 241, 234, 0.16);
+  border-color: #f3f1ea;
+}
+
+.embed-play:focus-visible {
+  outline: 1px solid #f3f1ea;
+  outline-offset: -4px;
+}
+
+@media (min-width: 40rem) {
+  .embed-title { font-size: 1.05rem; }
+  .embed-copy { left: 1.75rem; right: 1.75rem; bottom: 1.5rem; }
+  .embed-glyph { top: 1.5rem; left: 1.75rem; }
+}
+
+/* ── Folds — the background, for whoever wants it ──────────── */
+
+.fold {
+  border-top: 1px solid var(--line);
+}
+
+.fold:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.fold-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  padding: 0.9rem 0;
+  font-size: 0.85rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+
+.fold-summary::-webkit-details-marker {
+  display: none;
+}
+
+.fold-summary::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.35s var(--ease);
+}
+
+.fold[open] .fold-summary::after {
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.fold-summary:hover {
+  color: var(--ink-muted);
+}
+
+.fold-summary:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.fold-body {
+  padding-bottom: 1.75rem;
+}
+
+.fold-body .says {
+  margin-top: 0.5rem;
+}
+
+.fold-body .story {
+  margin-top: 0.25rem;
 }

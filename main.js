@@ -595,3 +595,31 @@
     else video.play().catch(() => {});
   });
 })();
+
+/* Third-party video, loaded on request. The page stays clean of YouTube
+   until someone actually wants to hear him. */
+(() => {
+  const embeds = document.querySelectorAll("[data-embed]");
+  if (!embeds.length) return;
+
+  embeds.forEach((embed) => {
+    const button = embed.querySelector("[data-embed-play]");
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+      const id = embed.dataset.embed;
+      if (!id) return;
+
+      const frame = document.createElement("iframe");
+      // nocookie host, and no related videos from other channels at the end
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      frame.title = embed.querySelector(".embed-title")?.textContent ?? "Video";
+      frame.allow =
+        "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.allowFullscreen = true;
+
+      embed.replaceChildren(frame);
+      frame.focus();
+    });
+  });
+})();
