@@ -2513,3 +2513,13 @@ button.btn {
 @media (min-width: 40rem) {
   .inset { margin: 2.5rem 0; }
 }
+
+/* the coined Swedish sits under the claim, as a signature */
+.about-coined {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  /* darker than --ink-faint, which does not clear 4.5:1 on paper */
+  color: #666666;
+  text-align: center;
+}
