@@ -2523,3 +2523,91 @@ button.btn {
   color: #666666;
   text-align: center;
 }
+
+/* Spec plate: a submarine has numbers, so it gets a data plate */
+
+.spec {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 860px;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.spec-item {
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-item:nth-child(odd) {
+  padding-right: 1.25rem;
+  border-right: 1px solid var(--line);
+}
+
+.spec-item:nth-child(even) {
+  padding-left: 1.25rem;
+}
+
+.spec-value {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: clamp(2.1rem, 9vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.spec-unit {
+  margin-left: 0.12em;
+  font-size: 0.42em;
+  letter-spacing: 0.04em;
+  /* darker than --ink-faint, which does not clear 4.5:1 on paper */
+  color: #666666;
+}
+
+.spec-label {
+  margin-top: 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #666666;
+}
+
+@media (min-width: 40rem) {
+  .spec {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 2rem;
+  }
+
+  .spec-item,
+  .spec-item:nth-child(odd) {
+    padding: 1.75rem 1.25rem;
+    border-right: 1px solid var(--line);
+  }
+
+  .spec-item:first-child { padding-left: 0; }
+  .spec-item:last-child { border-right: 0; padding-right: 0; }
+}
+
+/* A mockup has to say so, or it reads as a photograph of something real */
+.inset-flag {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.12rem 0.4rem;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: 0.08em;
+}
+
+/* the mockup label sits under the hero, in the page column */
+.item-hero-cap {
+  margin-top: 0.7rem;
+}
