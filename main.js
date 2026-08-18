@@ -623,3 +623,67 @@
     });
   });
 })();
+
+/* Contact sheet. The address is assembled here rather than written into the
+   markup, so the static source carries nothing for a harvester to lift. */
+(() => {
+  const sheet = document.getElementById("contact");
+  const triggers = document.querySelectorAll("[data-contact-open]");
+  if (!sheet || !triggers.length) return;
+
+  const NAME = "gustaf.garnow";
+  const HOST = "gmail.com";
+
+  const mail = sheet.querySelector("[data-channel-mail]");
+  if (mail) {
+    const subject = document.title.split(" — ")[0] || "BALTSAR";
+    mail.href = `mailto:${NAME}@${HOST}?subject=${encodeURIComponent(subject)}`;
+  }
+
+  const closers = sheet.querySelectorAll("[data-sheet-close]");
+  const focusable = () =>
+    Array.from(
+      sheet.querySelectorAll("a[href], button:not([disabled])")
+    ).filter((el) => el.offsetParent !== null);
+
+  let lastFocus = null;
+
+  const open = () => {
+    lastFocus = document.activeElement;
+    sheet.hidden = false;
+    sheet.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-lightbox-open");
+    sheet.querySelector(".sheet-close")?.focus();
+  };
+
+  const close = () => {
+    sheet.hidden = true;
+    sheet.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-lightbox-open");
+    lastFocus?.focus?.();
+    lastFocus = null;
+  };
+
+  triggers.forEach((trigger) => trigger.addEventListener("click", open));
+  closers.forEach((closer) => closer.addEventListener("click", close));
+
+  window.addEventListener("keydown", (event) => {
+    if (sheet.hidden) return;
+    if (event.key === "Escape") return close();
+    if (event.key !== "Tab") return;
+
+    // keep the tab ring inside the dialog while it is up
+    const items = focusable();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();

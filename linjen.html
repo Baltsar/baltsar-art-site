@@ -8,12 +8,12 @@
   <meta name="author" content="Gustaf Baltsar Garnow" />
   <meta name="theme-color" content="#f6f5f2" />
   <meta name="color-scheme" content="light" />
-  <link rel="canonical" href="https://www.baltsar.art/linjen.html" />
+  <link rel="canonical" href="https://www.baltsar.art/linjen" />
 
   <meta property="og:site_name" content="BALTSAR" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_GB" />
-  <meta property="og:url" content="https://www.baltsar.art/linjen.html" />
+  <meta property="og:url" content="https://www.baltsar.art/linjen" />
   <meta property="og:title" content="LINJEN — a voice in a field | BALTSAR" />
   <meta property="og:description" content="A phone booth in an Österlen field that answers when you lift the receiver. 90% done. Self-funded. Built with Johan Nygren. Runs on ElevenLabs and Twilio." />
   <meta property="og:image" content="https://www.baltsar.art/images/og.jpg" />
@@ -45,7 +45,7 @@
     "name": "LINJEN",
     "headline": "A voice in a field.",
     "description": "A phone booth in an Österlen field that answers when you lift the receiver.",
-    "url": "https://www.baltsar.art/linjen.html",
+    "url": "https://www.baltsar.art/linjen",
     "image": "https://www.baltsar.art/images/og-linjen.jpg",
     "creator": { "@type": "Person", "name": "Gustaf Baltsar Garnow" },
     "locationCreated": { "@type": "Place", "name": "Österlen, Sweden" },
@@ -290,7 +290,7 @@
         The call works. What remains is power. Passing it on keeps the line known.
       </p>
 
-      <div class="support-ways support-ways--solo">
+      <div class="support-ways">
         <div class="support-way">
           <p class="support-way-label">Pass it on</p>
           <p class="support-way-note">Send it to someone who should hear the line.</p>
@@ -311,11 +311,17 @@
         </a>
       </div>
         </div>
+
+        <div class="support-way">
+          <p class="support-way-label">Or reach me</p>
+          <p class="support-way-note">Questions, a place to put it, or a reason to build the next one.</p>
+          <button class="btn" type="button" data-contact-open>Get in touch</button>
+        </div>
       </div>
     </section>
 
     <nav class="item-next" aria-label="More works">
-      <a href="dinbank.html">
+      <a href="/dinbank">
         <span class="item-next-copy">
           <span class="item-next-label">Next project</span>
           <span class="item-next-title">DIN BANK</span>
@@ -354,6 +360,53 @@
     </div>
   </div>
 
-  <script src="main.js?v=15"></script>
+  <div class="sheet" id="contact" hidden aria-hidden="true">
+    <button class="sheet-backdrop" type="button" aria-label="Close" data-sheet-close></button>
+    <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sheet-heading">
+      <button class="sheet-close" type="button" aria-label="Close" data-sheet-close>
+        <span aria-hidden="true"></span>
+      </button>
+      <h2 class="sheet-heading" id="sheet-heading">Get in touch</h2>
+      <p class="sheet-text">Whichever is easiest. They all reach me.</p>
+
+      <ul class="channels">
+        <li>
+          <a class="channel" data-channel-mail>
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 4.76-8-4.76V6l8 4.75L20 6z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">Email</span>
+              <span class="channel-note">Slowest, but I always answer</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="channel" href="https://www.linkedin.com/in/gustafgarnow" target="_blank" rel="noopener">
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.75H2.4zM9.9 9.75h4.94v1.6h.07c.69-1.24 2.37-2.55 4.88-2.55 5.22 0 6.19 3.3 6.19 7.6v7.1h-5.16v-6.3c0-1.5-.03-3.44-2.14-3.44-2.14 0-2.47 1.64-2.47 3.33v6.41H9.9z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">LinkedIn</span>
+              <span class="channel-note">For anything work-shaped</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="channel" href="https://x.com/gustafgarnow" target="_blank" rel="noopener">
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">X</span>
+              <span class="channel-note">DMs are open</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="main.js?v=16"></script>
 </body>
 </html>

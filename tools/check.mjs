@@ -8,6 +8,8 @@ import { join, dirname, resolve, relative } from "node:path";
 
 const ROOT = resolve(dirname(new URL(import.meta.url).pathname), "..");
 const SITE = "https://www.baltsar.art";
+// The @baltsar.art mailbox does not exist yet, so every mailto has to go here.
+const CONTACT = "gustaf.garnow@gmail.com";
 
 const problems = [];
 const notices = [];
@@ -73,15 +75,15 @@ for (const page of pages) {
     const path = beforeHash.split("?")[0];
     if (!path) continue;
 
+    // cleanUrls: /linjen is served from linjen.html
     const onDisk = path.startsWith("/") ? join(ROOT, path) : join(here, path);
-    const resolved = onDisk.endsWith("/") ? join(onDisk, "index.html") : onDisk;
-    const target = existsSync(resolved)
-      ? resolved
-      : existsSync(join(ROOT, "index.html")) && (path === "/" || path === "./")
-        ? join(ROOT, "index.html")
-        : resolved;
+    const candidates =
+      path === "/" || path === "./"
+        ? [join(ROOT, "index.html")]
+        : [onDisk, `${onDisk}.html`, join(onDisk, "index.html")];
 
-    if (!existsSync(target)) {
+    const target = candidates.find((candidate) => existsSync(candidate));
+    if (!target) {
       fail(rel(page), `missing file: ${path}`);
       continue;
     }
@@ -95,9 +97,19 @@ for (const page of pages) {
     }
   }
 
-  // the address bar should never show index.html
-  for (const [, value] of html.matchAll(/\bhref\s*=\s*"([^"]*index\.html[^"]*)"/g)) {
-    fail(rel(page), `links to ${value} — should be "/" so the address bar stays clean`);
+  // the address bar should never show a file extension
+  for (const [, value] of html.matchAll(/\bhref\s*=\s*"([^"]*\.html[^"]*)"/g)) {
+    fail(rel(page), `links to ${value} — drop .html, the host serves clean URLs`);
+  }
+  for (const [, value] of html.matchAll(/\b(?:href|content)\s*=\s*"(https:\/\/www\.baltsar\.art[^"]*\.html[^"]*)"/g)) {
+    fail(rel(page), `canonical or og url still carries .html: ${value}`);
+  }
+
+  // a mailto nobody reads is worse than no mailto at all
+  for (const [, address] of html.matchAll(/\bhref\s*=\s*"mailto:([^"?]+)/g)) {
+    if (address !== CONTACT) {
+      fail(rel(page), `mailto goes to ${address}, which nobody reads — use ${CONTACT}`);
+    }
   }
 
   // images need alt, even if empty for decorative ones
@@ -125,14 +137,14 @@ if (existsSync(sitemapPath)) {
     (m) => m[1]
   );
   for (const loc of listed) {
-    if (loc.includes("index.html")) fail("sitemap.xml", `${loc} should be the bare domain`);
+    if (loc.endsWith(".html")) fail("sitemap.xml", `${loc} should drop .html`);
     const path = loc.replace(SITE, "") || "/";
-    const target = path === "/" ? join(ROOT, "index.html") : join(ROOT, path);
+    const target = path === "/" ? join(ROOT, "index.html") : join(ROOT, `${path}.html`);
     if (!existsSync(target)) fail("sitemap.xml", `lists ${loc}, which does not exist`);
   }
   for (const page of pages) {
     const name = rel(page);
-    const expected = name === "index.html" ? `${SITE}/` : `${SITE}/${name}`;
+    const expected = name === "index.html" ? `${SITE}/` : `${SITE}/${name.slice(0, -5)}`;
     if (!listed.includes(expected)) fail("sitemap.xml", `does not list ${expected}`);
   }
 }

@@ -8,12 +8,12 @@
   <meta name="author" content="Gustaf Baltsar Garnow" />
   <meta name="theme-color" content="#f6f5f2" />
   <meta name="color-scheme" content="light" />
-  <link rel="canonical" href="https://www.baltsar.art/dinbank.html" />
+  <link rel="canonical" href="https://www.baltsar.art/dinbank" />
 
   <meta property="og:site_name" content="BALTSAR" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_GB" />
-  <meta property="og:url" content="https://www.baltsar.art/dinbank.html" />
+  <meta property="og:url" content="https://www.baltsar.art/dinbank" />
   <meta property="og:title" content="DIN BANK — an ATM that shows the bank's dark side | BALTSAR" />
   <meta property="og:description" content="DIN BANK is an ATM with no bank — a build at 10%. Materials between 20 and 35,000 kr. Share it or support the build." />
   <meta property="og:image" content="https://www.baltsar.art/images/og.jpg" />
@@ -45,7 +45,7 @@
     "name": "DIN BANK",
     "headline": "An ATM that shows the bank's dark side.",
     "description": "An ATM with no bank. What it takes to build, and what it costs.",
-    "url": "https://www.baltsar.art/dinbank.html",
+    "url": "https://www.baltsar.art/dinbank",
     "image": "https://www.baltsar.art/images/og-dinbank.jpg",
     "creator": { "@type": "Person", "name": "Gustaf Baltsar Garnow" },
     "inLanguage": "en"
@@ -184,14 +184,14 @@
         <div class="support-way">
           <p class="support-way-label">Or fund it</p>
           <p class="support-way-note">Every krona goes straight into the build.</p>
-          <a class="btn" href="mailto:hej@baltsar.art?subject=DIN%20BANK">Support the build</a>
+          <button class="btn" type="button" data-contact-open>Support the build</button>
           <p class="support-note">Get in touch and I will tell you more first.</p>
         </div>
       </div>
     </section>
 
     <nav class="item-next" aria-label="More works">
-      <a href="ubaten.html">
+      <a href="/ubaten">
         <span class="item-next-copy">
           <span class="item-next-label">Next project</span>
           <span class="item-next-title">UBÅTEN</span>
@@ -230,6 +230,53 @@
     </div>
   </div>
 
-  <script src="main.js?v=15"></script>
+  <div class="sheet" id="contact" hidden aria-hidden="true">
+    <button class="sheet-backdrop" type="button" aria-label="Close" data-sheet-close></button>
+    <div class="sheet-inner" role="dialog" aria-modal="true" aria-labelledby="sheet-heading">
+      <button class="sheet-close" type="button" aria-label="Close" data-sheet-close>
+        <span aria-hidden="true"></span>
+      </button>
+      <h2 class="sheet-heading" id="sheet-heading">Get in touch</h2>
+      <p class="sheet-text">Whichever is easiest. They all reach me.</p>
+
+      <ul class="channels">
+        <li>
+          <a class="channel" data-channel-mail>
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 4.76-8-4.76V6l8 4.75L20 6z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">Email</span>
+              <span class="channel-note">Slowest, but I always answer</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="channel" href="https://www.linkedin.com/in/gustafgarnow" target="_blank" rel="noopener">
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.4 21.5h5.16V9.75H2.4zM9.9 9.75h4.94v1.6h.07c.69-1.24 2.37-2.55 4.88-2.55 5.22 0 6.19 3.3 6.19 7.6v7.1h-5.16v-6.3c0-1.5-.03-3.44-2.14-3.44-2.14 0-2.47 1.64-2.47 3.33v6.41H9.9z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">LinkedIn</span>
+              <span class="channel-note">For anything work-shaped</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="channel" href="https://x.com/gustafgarnow" target="_blank" rel="noopener">
+            <span class="channel-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </span>
+            <span class="channel-copy">
+              <span class="channel-name">X</span>
+              <span class="channel-note">DMs are open</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="main.js?v=16"></script>
 </body>
 </html>
