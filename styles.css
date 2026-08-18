@@ -2036,34 +2036,62 @@ body.is-lightbox-open {
   margin-top: 1.75rem;
 }
 
+/* A hairline was not enough — nothing said these were spoken, or by whom.
+   The mark carries the first, the name carries the second. */
 .say {
-  padding-left: 1.1rem;
-  border-left: 1px solid var(--line);
+  position: relative;
+  padding: 0 0 0 2.6rem;
+}
+
+.say::before {
+  content: "\201D";
+  position: absolute;
+  left: 0;
+  top: -0.18em;
+  font-size: 3.4rem;
+  line-height: 1;
+  color: #edb200;
+  pointer-events: none;
 }
 
 .say-sv {
-  font-size: 1.1rem;
+  font-size: 1.18rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.45;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .say-en {
-  margin-top: 0.55rem;
+  margin-top: 0.6rem;
   font-size: 0.88rem;
   line-height: 1.6;
   color: var(--ink-muted);
 }
 
 .say-source {
-  margin-top: 0.75rem;
+  margin-top: 0.9rem;
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   /* darker than --ink-faint, which does not clear 4.5:1 on paper */
   color: #666666;
+}
+
+/* the speaker, said plainly, above the where-and-when */
+.say-who {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.say-who::before {
+  content: "— ";
 }
 
 /* an aside in my own voice, not a label — sentence case on purpose */
@@ -2075,8 +2103,9 @@ body.is-lightbox-open {
 }
 
 @media (min-width: 40rem) {
-  .say { padding-left: 1.5rem; }
-  .say-sv { font-size: 1.22rem; }
+  .say { padding-left: 3.2rem; }
+  .say-sv { font-size: 1.3rem; }
+  .say::before { font-size: 4.2rem; }
 }
 
 /* ── Completed work, listed apart from what is still being built ── */
@@ -2457,4 +2486,30 @@ button.btn {
   appearance: none;
   font: inherit;
   cursor: pointer;
+}
+
+/* ── A picture inside the reading, not after it ────────────── */
+
+.inset {
+  margin: 2rem 0;
+}
+
+.inset img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+.inset-cap {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  /* darker than --ink-faint, which does not clear 4.5:1 on paper */
+  color: #666666;
+}
+
+@media (min-width: 40rem) {
+  .inset { margin: 2.5rem 0; }
 }
