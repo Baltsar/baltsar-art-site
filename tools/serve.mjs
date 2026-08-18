@@ -49,14 +49,14 @@ createServer(async (req, res) => {
   // never let a request climb out of the project
   if (normalize(path).includes("..")) return send(res, 400, "Bad request", TYPES[".txt"]);
 
-  // trailingSlash: false — /foo/ becomes /foo
+  // trailingSlash: false: /foo/ becomes /foo
   if (path.length > 1 && path.endsWith("/")) {
     const to = path.replace(/\/+$/, "") + url.search;
     res.writeHead(308, { location: to });
     return res.end();
   }
 
-  // cleanUrls — /foo.html becomes /foo
+  // cleanUrls: /foo.html becomes /foo
   if (path.endsWith(".html")) {
     const to = path.slice(0, -5).replace(/\/index$/, "") || "/";
     res.writeHead(308, { location: to + url.search });

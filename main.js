@@ -92,7 +92,7 @@
     });
   }
 
-  /* 1-bit ordered dither — stands in for work that doesn't exist yet */
+  /* 1-bit ordered dither: stands in for work that doesn't exist yet */
   const ditherFigures = Array.from(document.querySelectorAll("[data-dither]"));
 
   if (ditherFigures.length) {
@@ -186,7 +186,7 @@
     });
   }
 
-  /* share — copy link always; native sheet when the device has one */
+  /* share: copy link always; native sheet when the device has one */
   const shareBlocks = Array.from(document.querySelectorAll("[data-share]"));
 
   shareBlocks.forEach((block) => {
@@ -196,7 +196,7 @@
     const xLink = block.querySelector("[data-share-x]");
     const waLink = block.querySelector("[data-share-wa]");
     const pageUrl = window.location.href.split("#")[0];
-    const title = document.title.replace(/\s—\sBALTSAR$/, "") || "BALTSAR";
+    const title = document.title.replace(/\s\|\sBALTSAR$/, "") || "BALTSAR";
 
     if (urlEl) {
       try {
@@ -263,7 +263,7 @@
     }
   });
 
-  /* footer field — slow Bayer crawl */
+  /* footer field: slow Bayer crawl */
   const footerCanvas = document.querySelector("[data-footer-field]");
 
   if (footerCanvas) {
@@ -416,7 +416,7 @@
   });
 })();
 
-/* The recorded call — plays on screen with or without the audio file. */
+/* The recorded call: plays on screen with or without the audio file. */
 (() => {
   const call = document.querySelector("[data-call]");
   if (!call) return;
@@ -530,7 +530,7 @@
     call.dataset.state = "connecting";
     announce("Connecting");
 
-    // No recording in place yet is not a failure — the call still plays on screen.
+    // No recording in place yet is not a failure: the call still plays on screen.
     audio.play().catch(() => {});
 
     connectTimer = window.setTimeout(() => {
@@ -553,7 +553,7 @@
 })();
 
 /* Hero footage. Motion is an enhancement laid over the still that is already
-   there — phones keep the still, where a cropped video only ever looked worse. */
+   there: phones keep the still, where a cropped video only ever looked worse. */
 (() => {
   const videos = document.querySelectorAll("[data-hero-video]");
   if (!videos.length) return;
@@ -636,7 +636,9 @@
 
   const mail = sheet.querySelector("[data-channel-mail]");
   if (mail) {
-    const subject = document.title.split(" — ")[0] || "BALTSAR";
+    const subject =
+      document.title.replace(/\s\|\sBALTSAR$/, "").split(":")[0].trim() ||
+      "BALTSAR";
     mail.href = `mailto:${NAME}@${HOST}?subject=${encodeURIComponent(subject)}`;
   }
 

@@ -32,7 +32,7 @@ const pages = files.filter((f) => f.endsWith(".html"));
 const rel = (f) => relative(ROOT, f);
 
 // Attributes that point at something that has to exist. `content` is excluded
-// on purpose — meta content is prose, except for the image tags handled below.
+// on purpose: meta content is prose, except for the image tags handled below.
 const ASSET_ATTRS = /\b(?:src|href|poster|data-src|data-src-lg|data-src-pt|data-poster-lg|data-poster-pt)\s*=\s*"([^"]+)"/g;
 const SRCSET = /\bsrcset\s*=\s*"([^"]+)"/g;
 const META_IMAGE = /<meta\b[^>]*\b(?:property|name)="(?:og:image(?::secure_url)?|twitter:image)"[^>]*\bcontent="([^"]+)"/g;
@@ -99,16 +99,22 @@ for (const page of pages) {
 
   // the address bar should never show a file extension
   for (const [, value] of html.matchAll(/\bhref\s*=\s*"([^"]*\.html[^"]*)"/g)) {
-    fail(rel(page), `links to ${value} — drop .html, the host serves clean URLs`);
+    fail(rel(page), `links to ${value}: drop .html, the host serves clean URLs`);
   }
   for (const [, value] of html.matchAll(/\b(?:href|content)\s*=\s*"(https:\/\/www\.baltsar\.art[^"]*\.html[^"]*)"/g)) {
     fail(rel(page), `canonical or og url still carries .html: ${value}`);
   }
 
+  // em-dashes were a rhythm habit, not punctuation. Break the sentence.
+  // (en-dashes in ranges like 3\u20135 April are correct and allowed)
+  for (const [, line] of html.matchAll(/^(.*\u2014.*)$/gm)) {
+    fail(rel(page), `em-dash: ${line.trim().slice(0, 70)}`);
+  }
+
   // a mailto nobody reads is worse than no mailto at all
   for (const [, address] of html.matchAll(/\bhref\s*=\s*"mailto:([^"?]+)/g)) {
     if (address !== CONTACT) {
-      fail(rel(page), `mailto goes to ${address}, which nobody reads — use ${CONTACT}`);
+      fail(rel(page), `mailto goes to ${address}, which nobody reads: use ${CONTACT}`);
     }
   }
 
@@ -179,7 +185,7 @@ if (notices.length) {
 }
 
 if (problems.length === 0) {
-  console.log(`clean — ${pages.length} pages checked`);
+  console.log(`clean: ${pages.length} pages checked`);
   process.exit(0);
 }
 
