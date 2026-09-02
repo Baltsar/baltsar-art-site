@@ -85,10 +85,6 @@
         <span class="led" aria-hidden="true"></span>
         <img src="images/logo.png" alt="BALTSAR" width="119" height="18" />
       </a>
-      <p class="bar-state" aria-hidden="true" data-progress="34">
-        <span class="bar-state-label">Building</span>
-        <span class="bar-meter"><b></b></span>
-      </p>
       <nav class="nav">
         <a href="#verk">Works</a>
         <a href="#om">About</a>
@@ -178,6 +174,25 @@
 
     <section id="klart" class="works works--done" aria-label="Completed work">
       <h2 class="works-heading">Completed</h2>
+
+      <a class="work" href="/linjen" data-progress="100">
+        <div class="work-media">
+          <picture>
+            <source srcset="images/linjen-card.webp" type="image/webp" />
+            <img src="images/linjen-card.jpg" alt="LINJEN, a phone booth lit against the night sky in a field" width="682" height="512" loading="lazy" />
+          </picture>
+        </div>
+        <div class="work-meta">
+          <div class="work-title-row">
+            <h3>LINJEN</h3>
+            <span class="pct">100%</span>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <div class="progress-fill is-on" style="--p: 100"></div>
+          </div>
+          <p class="work-line">A phone box in a field. Lift the receiver and someone answers.</p>
+        </div>
+      </a>
 
       <a class="work" href="/ds" data-progress="100">
         <div class="work-media">
@@ -316,6 +331,6 @@
     </div>
   </div>
 
-  <script src="main.js?v=17"></script>
+  <script src="main.js?v=18"></script>
 </body>
 </html>
