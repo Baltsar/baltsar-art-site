@@ -28,19 +28,6 @@
     { passive: true }
   );
 
-  const meter = document.querySelector(".bar-meter b");
-  const meterState = meter?.closest(".bar-state");
-
-  if (meter && meterState) {
-    const fill = () => {
-      const progress = Number(meterState.dataset.progress || 0);
-      meter.style.clipPath = `inset(0 ${100 - progress}% 0 0)`;
-    };
-
-    if (reduce) fill();
-    else requestAnimationFrame(fill);
-  }
-
   const animateBars = (bars, getProgress) => {
     if (!bars.length) return;
 
@@ -640,6 +627,13 @@
       document.title.replace(/\s\|\sBALTSAR$/, "").split(":")[0].trim() ||
       "BALTSAR";
     mail.href = `mailto:${NAME}@${HOST}?subject=${encodeURIComponent(subject)}`;
+  }
+
+  /* No payment processor. Whoever writes in is the signal. */
+  const keepUp = document.querySelector("[data-support-keep]");
+  if (keepUp) {
+    const subject = "LINJEN: keep the line up";
+    keepUp.href = `mailto:${NAME}@${HOST}?subject=${encodeURIComponent(subject)}`;
   }
 
   const closers = sheet.querySelectorAll("[data-sheet-close]");

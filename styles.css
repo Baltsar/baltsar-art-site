@@ -157,46 +157,6 @@ body {
   background-position: -30% 0;
 }
 
-/* site state readout */
-.bar-state {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-right: auto;
-  margin-left: 1.4rem;
-}
-
-.bar-state-label {
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.bar-meter {
-  position: relative;
-  width: 46px;
-  height: 7px;
-  background-image: repeating-linear-gradient(
-    to right,
-    rgba(26, 26, 26, 0.2) 0 2px,
-    transparent 2px 4px
-  );
-}
-
-.bar-meter b {
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--ink) 0 2px,
-    transparent 2px 4px
-  );
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.4s steps(12, end) 0.35s;
-}
-
 /* scroll readout along the bottom of the glass */
 .bar-scroll {
   position: absolute;
@@ -1407,6 +1367,13 @@ a:focus-visible {
   color: var(--ink-muted);
 }
 
+/* the one ask that costs something, kept apart from the two that do not */
+.support-keep {
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
 .support .btn {
   margin-top: 1rem;
 }
@@ -1748,9 +1715,6 @@ body.is-lightbox-open {
     padding: 0.65rem 0.85rem;
   }
 
-  .bar-state {
-    display: none;
-  }
 
   .item {
     padding: 5rem 1.25rem 3rem;
