@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/ubaten", "destination": "https://ubaten.vercel.app/ubaten" },
+    { "source": "/ubaten/:path*", "destination": "https://ubaten.vercel.app/ubaten/:path*" }
+  ]
 }
